@@ -933,6 +933,7 @@ nav a.active {
    ========================================================================== */
 
 /* Base Section */
+@media (max-width: 768px) {
 section.contact-section {
     display: block !important;
     clear: both !important;
@@ -1022,7 +1023,7 @@ div.contact-container {
     flex-direction: column;
     gap: 20px;
 }
-
+}
 .faq-item h4 {
     font-size: 1.4rem;
     color: #C5A059;
