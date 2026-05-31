@@ -68,7 +68,10 @@ function aktifkanTransisiSection() {
     }
 
     window.addEventListener('scroll', updateNavActive, { passive: true });
+    window.addEventListener('touchmove', updateNavActive, { passive: true });
     window.addEventListener('resize', updateNavActive);
+    window.addEventListener('orientationchange', updateNavActive);
+    window.addEventListener('load', updateNavActive);
     updateNavActive();
 }
 
