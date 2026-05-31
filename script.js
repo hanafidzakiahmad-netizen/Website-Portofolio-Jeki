@@ -46,14 +46,19 @@ function kelolaStatusKreatif() {
 
 // 🎯 VERSI FIX: DETEKTOR GARIS NAVBAR SUPER SENSITIF & AKURAT
 function aktifkanTransisiSection() {
-    const semuaSection = document.querySelectorAll('section');
-    const semuaNavLink = document.querySelectorAll('nav a');
+    const semuaSection = Array.from(document.querySelectorAll('section[id]'));
+    const semuaNavLink = Array.from(document.querySelectorAll('nav a'));
 
-    const opsiObserver = {
-        root: null,
-        threshold: 0.1,
-        rootMargin: "-20% 0px -30% 0px"
-    };
+    function updateNavActive() {
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
+        let activeId = semuaSection[0] ? semuaSection[0].id : null;
+
+        semuaSection.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (scrollPosition >= sectionTop) {
+                activeId = section.id;
+            }
+        });
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
