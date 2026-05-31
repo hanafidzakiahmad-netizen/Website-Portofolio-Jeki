@@ -182,3 +182,60 @@ window.addEventListener('DOMContentLoaded', () => {
     initScrollDirection();
     initPhotoPopup();
 });
+
+function initExpCardPopup() {
+    const overlay   = document.getElementById('expPopupOverlay');
+    const closeBtn  = document.getElementById('expPopupClose');
+    const popupImg  = document.getElementById('expPopupImg');
+    const popupBadge = document.getElementById('expPopupBadge');
+    const popupDate = document.getElementById('expPopupDate');
+    const popupTitle = document.getElementById('expPopupTitle');
+    const popupDesc = document.getElementById('expPopupDesc');
+ 
+    if (!overlay) return;
+ 
+    // Open popup and fill it with the clicked card's data
+    function openPopup(card) {
+        const img   = card.querySelector('.main-photo img');
+        const badge = card.querySelector('.exp-badge');
+        const date  = card.querySelector('.exp-date');
+        const title = card.querySelector('.exp-content h3');
+        const desc  = card.querySelector('.exp-content p');
+ 
+        popupImg.src     = img  ? img.src  : '';
+        popupImg.alt     = img  ? (img.alt || '') : '';
+        popupBadge.textContent = badge ? badge.textContent : '';
+        popupDate.textContent  = date  ? date.textContent  : '';
+        popupTitle.textContent = title ? title.textContent : '';
+        popupDesc.textContent  = desc  ? desc.textContent  : '';
+ 
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+ 
+    function closePopup() {
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+ 
+    // Attach click listener to every exp-card
+    document.querySelectorAll('.exp-card').forEach(card => {
+        card.addEventListener('click', () => openPopup(card));
+    });
+ 
+    // Close on ×, backdrop click, or Escape key
+    closeBtn.addEventListener('click', closePopup);
+ 
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closePopup();
+    });
+ 
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) closePopup();
+    });
+}
+ 
+// Run after DOM is ready
+document.addEventListener('DOMContentLoaded', initExpCardPopup);
