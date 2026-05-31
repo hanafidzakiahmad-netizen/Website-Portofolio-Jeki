@@ -371,40 +371,8 @@ My focus is on delivering cinematic storytelling, eye-catching visual art, and p
         </div>
     </section>
 
-    <!-- IMAGE POPUP MODAL -->
-    <div class="image-popup-overlay" id="imagePopupOverlay" aria-hidden="true">
-        <div class="image-popup-card" role="dialog" aria-modal="true" aria-labelledby="popupImageTitle">
-            <button type="button" class="image-popup-close" id="imagePopupClose" aria-label="Close image popup">×</button>
-            <img src="" alt="" class="image-popup-img" id="imagePopupImg">
-            <p class="image-popup-caption" id="popupImageTitle"></p>
-        </div>
-    </div>
-
     <script src="script.js"></script>
-    // 🎬 LOGIKA LIGHTBOX POP-UP PORTFOLIO JEKI
-function openLightbox(element) {
-    const modal = document.getElementById("imageLightbox");
-    const lightboxImg = document.getElementById("lightboxImg");
-    
-    // Munculkan container modal pop-up
-    modal.style.display = "block";
-    // Ambil file src gambar yang sedang diklik lalu oper ke dalam pop-up
-    lightboxImg.src = element.src;
-}
 
-function closeLightbox() {
-    const modal = document.getElementById("imageLightbox");
-    // Sembunyikan kembali modal pop-up
-    modal.style.display = "none";
-}
-
-// BONUS: Ketika user mengklik area hitam di luar gambar, pop-up otomatis menutup
-window.onclick = function(event) {
-    const modal = document.getElementById("imageLightbox");
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
 
     <!-- 🌐 CINEMATIC LIGHTBOX POP-UP SYSTEM -->
 <div id="imageLightbox" class="lightbox-modal">
